@@ -1,0 +1,5 @@
+#! /bin/sh
+
+ROUTEMASTER_DRAIN_TOKEN='a-the-local-drain-token' \
+ROUTEMASTER_SERVICE_AUTH_CREDENTIALS='localhost:foo:bar' \
+iex -S mix phx.server

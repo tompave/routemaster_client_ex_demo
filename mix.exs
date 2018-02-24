@@ -37,7 +37,12 @@ defmodule RmDemo.Mixfile do
       {:phoenix_html, "~> 2.10"},
       {:phoenix_live_reload, "~> 1.0", only: :dev},
       {:gettext, "~> 0.11"},
-      {:cowboy, "~> 1.0"}
+      {:cowboy, "~> 1.0"},
+
+      {:routemaster, "~> 0.2.0", hex: :routemaster_client},
+      # {:routemaster_client, "~> 0.2.0"},
+
+      {:deferred_config, "~> 0.1"},
     ]
   end
 end

@@ -2,6 +2,11 @@ defmodule RmDemoWeb.Router do
   use RmDemoWeb, :router
 
   pipeline :browser do
+    plug Plug.Parsers,
+      parsers: [:urlencoded, :multipart],
+      pass: ["*/*"],
+      json_decoder: Poison
+
     plug :accepts, ["html"]
     plug :fetch_session
     plug :fetch_flash
@@ -10,6 +15,11 @@ defmodule RmDemoWeb.Router do
   end
 
   pipeline :api do
+    plug Plug.Parsers,
+      parsers: [:json],
+      pass: ["*/*"],
+      json_decoder: Poison
+
     plug :accepts, ["json"]
   end
 
@@ -23,4 +33,10 @@ defmodule RmDemoWeb.Router do
   # scope "/api", RmDemoWeb do
   #   pipe_through :api
   # end
+
+  scope path: "/events" do
+    forward "/", RmDemoWeb.Drain
+  end
+
+  # forward "/events", RmDemoWeb.Drain
 end
